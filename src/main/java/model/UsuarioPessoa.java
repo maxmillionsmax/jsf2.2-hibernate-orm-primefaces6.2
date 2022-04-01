@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,10 @@ import javax.persistence.OneToMany;
 	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
 	@NamedQuery(name = "UsuarioPessoa.buscarPorNome", query = "select u from UsuarioPessoa u where u.nome= :nome")
 })
-public class UsuarioPessoa {
+public class UsuarioPessoa implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
