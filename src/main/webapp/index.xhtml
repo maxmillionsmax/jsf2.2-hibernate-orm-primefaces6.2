@@ -9,7 +9,15 @@
 
 <h:body>
 	
-	<h:form id="formulario">
+	 <h:form>
+	<p:breadCrumb>	
+	<p:menuitem/>
+	<p:menuitem value="Pagina JSF" outcome="index.jsf"/>
+	<p:menuitem value="Pagina PrimeFaces" outcome="primefaces.jsf"/>
+	</p:breadCrumb>
+	</h:form>
+	
+	 <h:form id="formulario">
 		<h:messages  showDetail="true" showSummary="false"/>
 		<h:panelGrid columns="2">
 		
