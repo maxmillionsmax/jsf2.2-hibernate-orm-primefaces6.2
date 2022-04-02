@@ -9,17 +9,18 @@
 
 <h:body>
 
-	<h:form>
+	<h:form id="formulario">
+		<h:messages  showDetail="true" showSummary="false"/>
 		<h:panelGrid columns="2">
 		
 		<h:outputLabel>Id:</h:outputLabel>
 		<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 		
 		<h:outputLabel>Nome:</h:outputLabel>
-		<h:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}"/>
+		<h:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" />
 		
 		<h:outputLabel>Sobrenome:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"/>
+		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
 		
 		<h:outputLabel>Idade:</h:outputLabel>
 		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
@@ -72,17 +73,20 @@
 		
 		<h:column>
 				<f:facet name="header">Editar</f:facet>
-				<h:commandLink>
+				<h:commandLink id="botaoeditar">
 				<h:graphicImage url="resources/img/editar.png" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					<f:ajax execute="botaoeditar" render=":formulario" />
 				</h:commandLink>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Delete</f:facet>
-				<h:commandLink 	action="#{usuarioPessoaManagedBean.remover}">
+				<h:commandLink action="#{usuarioPessoaManagedBean.remover}" immediate="true" id="botaoremover">
 					<h:graphicImage url="resources/img/delete_97403.jpg" width="25" height="25"/>
-					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					<f:setPropertyActionListener value="#{user}"
+						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+						<f:ajax execute="botaoremover" render=":formulario" />
 				</h:commandLink>
 			</h:column>
 				
