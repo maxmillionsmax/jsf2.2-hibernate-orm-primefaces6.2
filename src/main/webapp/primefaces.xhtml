@@ -11,76 +11,76 @@
 	
 	<h:form id="formulario">
 		<h:messages  showDetail="true" showSummary="false"/>
-		<h:panelGrid columns="2">
+		<p:panelGrid columns="2">
 		
 		<h:outputLabel>Id:</h:outputLabel>
-		<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
+		<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 		
 		<h:outputLabel>Nome:</h:outputLabel>
-		<h:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" />
+		<p:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" />
 		
 		<h:outputLabel>Sobrenome:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
+		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
 		
 		<h:outputLabel>Idade:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
+		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
 		
 		<h:outputLabel>Email:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"/>
+		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"/>
 		
 		<h:outputLabel>Login:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
+		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 		
 		<h:outputLabel>Senha:</h:outputLabel>
 		<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
 		
-		</h:panelGrid>
+		</p:panelGrid>
 		
-		<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
-		<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+		<p:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
+		<p:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
 
-	<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
+	<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
 		<f:facet name="header">Lista de usuários</f:facet>
-		<h:column>
+		<p:column>
 			<f:facet name="header">Id:</f:facet>
 		<h:outputText value="#{user.id}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 		<f:facet name="header">Nome:</f:facet>
 		<h:outputText value="#{user.nome}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 		<f:facet name="header">Sobrenome:</f:facet>
 		<h:outputText value="#{user.sobrenome}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 		<f:facet name="header">Idade:</f:facet>
 		<h:outputText value="#{user.idade}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 		<f:facet name="header">Email</f:facet>
 		<h:outputText value="#{user.email}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 		<f:facet name="header">Login:</f:facet>
 		<h:outputText value="#{user.login}"/>
-		</h:column>
+		</p:column>
 		
-		<h:column>
+		<p:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink id="botaoeditar">
 				<h:graphicImage url="resources/img/editar.png" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 					<f:ajax execute="botaoeditar" render=":formulario" />
 				</h:commandLink>
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">Delete</f:facet>
 				<h:commandLink action="#{usuarioPessoaManagedBean.remover}" immediate="true" id="botaoremover">
 					<h:graphicImage url="resources/img/delete_97403.jpg" width="25" height="25"/>
@@ -88,9 +88,9 @@
 						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 						<f:ajax execute="botaoremover" render=":formulario" />
 				</h:commandLink>
-			</h:column>
+			</p:column>
 				
-	</h:dataTable>
+	</p:dataTable>
 	</h:form>
 	
 	
