@@ -77,6 +77,14 @@
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 				</h:commandLink>
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink 	action="#{usuarioPessoaManagedBean.remover}">
+					<h:graphicImage url="resources/img/delete_97403.jpg" width="25" height="25"/>
+					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+				</h:commandLink>
+			</h:column>
 				
 	</h:dataTable>
 	</h:form>
