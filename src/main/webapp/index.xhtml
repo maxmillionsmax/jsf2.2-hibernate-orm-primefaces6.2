@@ -33,6 +33,13 @@
 		<h:outputLabel>Idade:</h:outputLabel>
 		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
 		
+		
+		<h:outputLabel>Sexo:</h:outputLabel>
+			<h:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+				<f:selectItem itemValue="MASCULINO" />
+				<f:selectItem itemValue="FEMININO"/>
+		</h:selectOneMenu>
+		
 		<h:outputLabel>Email:</h:outputLabel>
 		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"/>
 		
@@ -73,6 +80,8 @@
 		<f:facet name="header">Email</f:facet>
 		<h:outputText value="#{user.email}"/>
 		</h:column>
+		
+		
 		
 		<h:column>
 		<f:facet name="header">Login:</f:facet>

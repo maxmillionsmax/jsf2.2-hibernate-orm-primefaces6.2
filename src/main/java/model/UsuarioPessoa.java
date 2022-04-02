@@ -13,13 +13,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
-	@NamedQuery(name = "UsuarioPessoa.buscarPorNome", query = "select u from UsuarioPessoa u where u.nome= :nome")
-})
-public class UsuarioPessoa implements Serializable{
+@NamedQueries({ @NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
+		@NamedQuery(name = "UsuarioPessoa.buscarPorNome", query = "select u from UsuarioPessoa u where u.nome= :nome") })
+public class UsuarioPessoa implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,14 +29,23 @@ public class UsuarioPessoa implements Serializable{
 	private String login;
 	private String senha;
 	private int idade;
-	
+	private String sexo;
+
 	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
 	private List<TelefoneUser> telefoneUsers;
-	
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
 	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {
 		this.telefoneUsers = telefoneUsers;
 	}
-	
+
 	public List<TelefoneUser> getTelefoneUsers() {
 		return telefoneUsers;
 	}
