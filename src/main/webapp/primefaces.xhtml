@@ -83,7 +83,7 @@
 		
 		<p:column>
 				<f:facet name="header">Editar</f:facet>
-				<h:commandLink id="botaoeditar">
+				<h:commandLink id="botaoeditar" immediate="true">
 				<h:graphicImage url="resources/img/editar.png" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 					<f:ajax execute="botaoeditar" render=":formulario" />
