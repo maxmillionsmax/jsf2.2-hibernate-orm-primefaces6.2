@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -23,6 +24,12 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
 
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	
+	@PostConstruct
+	public void init() {
+		list = daoGeneric.listar(UsuarioPessoa.class);
+
+	}
 
 	public void setUsuarioPessoa(UsuarioPessoa usuarioPessoa) {
 		this.usuarioPessoa = usuarioPessoa;
@@ -35,7 +42,9 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	public String salvar() {
 
 		daoGeneric.salvar(usuarioPessoa);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ","Salvo com sucesso"));
+		list.add(usuarioPessoa);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ","Salvo com sucesso"));
 
 		return "";
 	}
@@ -46,14 +55,25 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	}
 
 	public List<UsuarioPessoa> getList() {
-		list = daoGeneric.listar(UsuarioPessoa.class);
 		return list;
 	}
 
 	public String remover() {
-		daoGeneric.deletarPorId(usuarioPessoa);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Deletado com sucesso"));
-		usuarioPessoa = new UsuarioPessoa();
+		
+		try {
+			daoGeneric.deletarPorId(usuarioPessoa);
+			list.remove(usuarioPessoa);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Deletado com sucesso"));
+			usuarioPessoa = new UsuarioPessoa();
+			
+		} catch (Exception e) {
+			if (e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"Informação: ", "Existem telefones para o usuário"));
+			}
+		}
+		
 		return "";
 	}
 }
