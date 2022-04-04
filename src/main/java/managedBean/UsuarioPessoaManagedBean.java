@@ -10,7 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import dao.DaoGeneric;
+import dao.DaoUsuario;
 import model.UsuarioPessoa;
 
 @ManagedBean(name = "usuarioPessoaManagedBean")
@@ -21,9 +21,9 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 
-	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
-
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	
+	private DaoUsuario daoGeneric = new DaoUsuario<UsuarioPessoa>();
 	
 	@PostConstruct
 	public void init() {
@@ -61,7 +61,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	public String remover() {
 		
 		try {
-			daoGeneric.deletarPorId(usuarioPessoa);
+			daoGeneric.removerUsario(usuarioPessoa);
 			list.remove(usuarioPessoa);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Deletado com sucesso"));
 			usuarioPessoa = new UsuarioPessoa();
@@ -71,6 +71,8 @@ public class UsuarioPessoaManagedBean implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_INFO,
 								"Informação: ", "Existem telefones para o usuário"));
+			}else {
+				e.printStackTrace();
 			}
 		}
 		
