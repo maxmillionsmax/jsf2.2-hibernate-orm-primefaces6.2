@@ -23,7 +23,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	
-	private DaoUsuario daoGeneric = new DaoUsuario<UsuarioPessoa>();
+	private DaoUsuario<UsuarioPessoa> daoGeneric = new DaoUsuario<UsuarioPessoa>();
 	
 	@PostConstruct
 	public void init() {
