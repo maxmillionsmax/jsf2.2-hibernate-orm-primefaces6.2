@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -25,13 +26,13 @@
 		<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 		
 		<h:outputLabel>Nome:</h:outputLabel>
-		<h:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" />
+		<h:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"  pt:placeholder="Informe o nome"/>
 		
 		<h:outputLabel>Sobrenome:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
+		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" pt:placeholder="Informe o sobrenome"/>
 		
 		<h:outputLabel>Idade:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
+		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" pt:placeholder="Informe a idade"/>
 		
 		
 		<h:outputLabel>Sexo:</h:outputLabel>
@@ -41,7 +42,7 @@
 		</h:selectOneMenu>
 		
 		<h:outputLabel>CEP:</h:outputLabel>
-		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+		<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser" pt:placeholder="Informe CEP">
 			<f:ajax event="blur" execute="@this" render="logradouro complemento bairro localidade uf ibge gia"
 			 listener="#{usuarioPessoaManagedBean.pesquisaCep}"/>
 		</h:inputText>	
