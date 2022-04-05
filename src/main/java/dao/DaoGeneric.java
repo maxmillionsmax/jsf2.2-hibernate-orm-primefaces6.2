@@ -32,16 +32,18 @@ public class DaoGeneric<E> implements Serializable{
 	public E pesquisar(E entidade) {
 
 		Object id = HibernateUtil.getPrimaryKey(entidade);
+		@SuppressWarnings("unchecked")
 		E e = (E) entityManager.find(entidade.getClass(), id);
 
 		return e;
 	}
-
-	public E pesquisar(Long id,Class<E> entidade) {
-
-		E e = (E) entityManager.find(entidade, id);
-
+	
+	public E pesquisar(Long id, Class<E> entidade) {
+		entityManager.clear();
+		@SuppressWarnings("unchecked")
+		E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
 		return e;
+
 	}
 	
 	public void deletarPorId(E entidade) throws Exception{

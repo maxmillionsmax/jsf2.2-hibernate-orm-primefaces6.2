@@ -15,11 +15,10 @@ import model.UsuarioPessoa;
 
 @ManagedBean(name = "telefoneManagedBean")
 @ViewScoped
-public class TelefoneManagedBean implements Serializable{
+public class TelefoneManagedBean implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	private UsuarioPessoa user = new UsuarioPessoa();
 	private DaoUsuario<UsuarioPessoa> daoUser = new DaoUsuario<UsuarioPessoa>();
 	private DaoTelefones<TelefoneUser> daoTelefone = new DaoTelefones<TelefoneUser>();
@@ -34,19 +33,29 @@ public class TelefoneManagedBean implements Serializable{
 		user = daoUser.pesquisar(Long.parseLong(coduser), UsuarioPessoa.class);
 
 	}
-	
-	public String salvar(){
-		
+
+	public String salvar() {
+
 		telefone.setUsuarioPessoa(user);
 		daoTelefone.salvar(telefone);
 		telefone = new TelefoneUser();
 		user = daoUser.pesquisar(user.getId(), UsuarioPessoa.class);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Salvo com sucesso!"));
-		
+
 		return "";
 	}
-	
+
+	public String removeTelefone() throws Exception {
+
+		daoTelefone.deletarPorId(telefone);
+		user = daoUser.pesquisar(user.getId(), UsuarioPessoa.class);
+		telefone = new TelefoneUser();
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Telefone Removido!"));
+		return "";
+	}
+
 	public void setTelefone(TelefoneUser telefone) {
 		this.telefone = telefone;
 	}
@@ -62,13 +71,13 @@ public class TelefoneManagedBean implements Serializable{
 	public UsuarioPessoa getUser() {
 		return user;
 	}
-	
+
 	public void setDaoTelefone(DaoTelefones<TelefoneUser> daoTelefone) {
 		this.daoTelefone = daoTelefone;
 	}
-	
+
 	public DaoTelefones<TelefoneUser> getDaoTelefone() {
 		return daoTelefone;
 	}
-	
+
 }
