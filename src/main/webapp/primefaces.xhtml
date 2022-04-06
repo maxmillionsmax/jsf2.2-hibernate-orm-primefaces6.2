@@ -88,35 +88,27 @@
     <h:form id="formTable">
 	<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
 		<f:facet name="header">Lista de usuários</f:facet>
-		<p:column>
-			<f:facet name="header">Id:</f:facet>
+		<p:column headerText="Id">
 		<h:outputText value="#{user.id}"/>
 		</p:column>
 		
-		<p:column>
-		<f:facet name="header">Nome:</f:facet>
+		<p:column headerText="Nome">
 		<h:outputText value="#{user.nome}"/>
 		</p:column>
 		
-		<p:column>
-		<f:facet name="header">Sobrenome:</f:facet>
+		<p:column headerText="Sobrenome">
 		<h:outputText value="#{user.sobrenome}"/>
 		</p:column>
 		
-		<p:column>
-		<f:facet name="header">Idade:</f:facet>
+		<p:column headerText="Idade">
 		<h:outputText value="#{user.idade}"/>
 		</p:column>
 		
-		<p:column>
-		<f:facet name="header">Email</f:facet>
+		<p:column headerText="Email">
 		<h:outputText value="#{user.email}"/>
 		</p:column>
 		
-		
-		
-		<p:column>
-		<f:facet name="header">Login:</f:facet>
+		<p:column headerText="Login">
 		<h:outputText value="#{user.login}"/>
 		</p:column>
 		
@@ -150,7 +142,6 @@
 				
 	</p:dataTable>
 	</h:form>
-	
 	
 </h:body>
 
