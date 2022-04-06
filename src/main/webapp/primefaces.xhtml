@@ -112,22 +112,17 @@
 		<h:outputText value="#{user.login}"/>
 		</p:column>
 		
-		<p:column>
-				<f:facet name="header">Editar</f:facet>
+		<p:column headerText="Editar">
 				<h:commandLink id="botaoeditar" immediate="true">
 				<h:graphicImage url="resources/img/editar.png" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-					<f:ajax execute="botaoeditar" render=":formulario" />
 				</h:commandLink>
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Delete</f:facet>
+			<p:column headerText="Remover">
 				<h:commandLink action="#{usuarioPessoaManagedBean.remover}" immediate="true" id="botaoremover">
 					<h:graphicImage url="resources/img/delete_97403.jpg" width="25" height="25"/>
-					<f:setPropertyActionListener value="#{user}"
-						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-						<f:ajax execute="botaoremover" render="@form :formulario:msg" />
+					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 				</h:commandLink>
 			</p:column>
 			
