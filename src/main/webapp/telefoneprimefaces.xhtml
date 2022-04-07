@@ -23,25 +23,25 @@
 
 		<h:panelGrid columns="2">
 
-			<h:outputLabel>Usuario: </h:outputLabel>
-			<h:outputText value="#{telefoneManagedBean.user.nome}" />
+			<p:outputLabel>Usuario: </p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.user.nome}" readonly="true"/>
 
-			<h:outputLabel>Número:</h:outputLabel>
-			<h:inputText value="#{telefoneManagedBean.telefone.numero}" />
+			<p:outputLabel>Número:</p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.telefone.numero}" />
 
-			<h:outputLabel>Tipo:</h:outputLabel>
-			<h:inputText value="#{telefoneManagedBean.telefone.tipo}" />
+			<p:outputLabel>Tipo:</p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.telefone.tipo}" />
 
 		</h:panelGrid>
 		<br />
 		<br />
 
-		<h:commandButton value="Salvar" action="#{telefoneManagedBean.salvar}"></h:commandButton>
+		<p:commandButton value="Salvar" action="#{telefoneManagedBean.salvar}" ajax="false"></p:commandButton>
 
 	</h:form>
 
 	<h:form id="formTelefones">
-		<h:dataTable value="#{telefoneManagedBean.user.telefoneUsers}"
+		<p:dataTable value="#{telefoneManagedBean.user.telefoneUsers}"
 			var="fone" cellpadding="15" border="1" id="tabelFone">
 
 			<f:facet name="header">Lista de telefones</f:facet>
@@ -74,7 +74,7 @@
 				</h:commandLink>
 			</h:column>
 
-		</h:dataTable>
+		</p:dataTable>
 	</h:form>
 
 </h:body>
