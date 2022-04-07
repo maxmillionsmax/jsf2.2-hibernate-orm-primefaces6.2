@@ -20,7 +20,7 @@
 	</h:form>
 	
 	
-	 <h:form>
+	 <h:form id="formulario">
 		<p:messages showDetail="true" autoUpdate="true" />
 		<br/>
 		<br/>
@@ -84,7 +84,9 @@
 		</p:panelGrid>
 		
 		<p:commandButton value="Salvar" ajax="false" action="#{usuarioPessoaManagedBean.salvar}"/>
-		<p:commandButton value="Novo" ajax="false" action="#{usuarioPessoaManagedBean.novo}"/>
+		<p:commandButton value="Novo" immediate="true" action="#{usuarioPessoaManagedBean.novo}">
+			<f:ajax execute="@this" render="@form"/>
+		</p:commandButton>
     </h:form>
     
     <h:form id="formTable">
@@ -118,6 +120,7 @@
 				<h:commandLink id="botaoeditar" immediate="true">
 				<h:graphicImage url="resources/img/editar.png" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					<f:ajax execute="botaoeditar" render=":formulario" />
 				</h:commandLink>
 			</p:column>
 			
@@ -125,15 +128,16 @@
 				<h:commandLink action="#{usuarioPessoaManagedBean.remover}" immediate="true" id="botaoremover">
 					<h:graphicImage url="resources/img/delete_97403.jpg" width="25" height="25"/>
 					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					<f:ajax execute="botaoremover" render="@form" />
 				</h:commandLink>
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Telefones</f:facet>
+			<p:column headerText="Telefones">
 				<h:commandLink immediate="true" 
-					action="telefone.jsf" id="botaofone">
+					action="telefoneprimefaces.jsf" id="botaofone">
 					<h:graphicImage url="resources/img/phone.png" width="25" height="25"/>
 					<f:param name="codigouser" value="#{user.id}"/>
+					
 				</h:commandLink>
 			</p:column>
 				
