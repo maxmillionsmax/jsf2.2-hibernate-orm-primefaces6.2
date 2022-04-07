@@ -21,7 +21,8 @@
 	
 	
 	 <h:form>
-		<p:messages showDetail="true" autoUpdate="true"/>
+		<p:messages showDetail="true" autoUpdate="true" />
+		<br/>
 		<br/>
 		<p:panelGrid columns="2">
 		
@@ -39,10 +40,10 @@
 		
 		
 		<p:outputLabel>Sexo:</p:outputLabel>
-			<h:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
-				<f:selectItem itemValue="MASCULINO" />
-				<f:selectItem itemValue="FEMININO"/>
-		</h:selectOneMenu>
+			<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+				<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+				<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
+		</p:selectOneMenu>
 		
 		<p:outputLabel>CEP:</p:outputLabel>
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser" pt:placeholder="Informe CEP">
