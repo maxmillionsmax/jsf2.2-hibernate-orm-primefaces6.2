@@ -30,7 +30,9 @@
 		<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 		
 		<p:outputLabel>Nome:</p:outputLabel>
-		<p:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"  pt:placeholder="Informe o nome"/>
+		<p:inputText  value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" id="idnomepessoa">
+			<p:watermark value="Informe o nome" for="idnomepessoa"/>
+		</p:inputText>
 		
 		<p:outputLabel>Sobrenome:</p:outputLabel>
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" pt:placeholder="Informe o sobrenome"/>
@@ -76,7 +78,9 @@
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia"/>
 		
 		<p:outputLabel>Email:</p:outputLabel>
-		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"/>
+		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" id="idemail">
+			<p:watermark value="Informe o email" for="idemail"/>
+		</p:inputText>
 		
 		<p:outputLabel>Login:</p:outputLabel>
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
