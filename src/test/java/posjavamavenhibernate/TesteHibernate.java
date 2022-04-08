@@ -20,7 +20,6 @@ public class TesteHibernate {
 		pessoa.setSobrenome("c");
 		pessoa.setLogin("c");
 		pessoa.setSenha("c");
-		pessoa.setEmail("c@g.co");
 
 		daoGeneric.salvar(pessoa);
 		System.out.println(pessoa);

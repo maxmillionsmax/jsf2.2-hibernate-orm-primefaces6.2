@@ -76,12 +76,7 @@
 		
 		<p:outputLabel>Gia:</p:outputLabel>
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia"/>
-		
-		<p:outputLabel>Email:</p:outputLabel>
-		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" id="idemail">
-			<p:watermark value="Informe o email" for="idemail"/>
-		</p:inputText>
-		
+						
 		<p:outputLabel>Login:</p:outputLabel>
 		<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 		
@@ -113,10 +108,6 @@
 		
 		<p:column headerText="Idade">
 		<h:outputText value="#{user.idade}"/>
-		</p:column>
-		
-		<p:column headerText="Email">
-		<h:outputText value="#{user.email}"/>
 		</p:column>
 		
 		<p:column headerText="Login">
