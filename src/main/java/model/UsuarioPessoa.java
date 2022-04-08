@@ -45,6 +45,15 @@ public class UsuarioPessoa implements Serializable {
 	private String ibge;
 	private String gia;
 	private String bairro;
+	private Double salario;
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
