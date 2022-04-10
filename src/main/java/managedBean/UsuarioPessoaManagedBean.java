@@ -41,7 +41,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	private BarChartModel barChartModel = new BarChartModel();
 
 	private EmailUser emailUser = new EmailUser();
-	
+
 	private DaoEmail<EmailUser> daoEmail = new DaoEmail<EmailUser>();
 
 	@PostConstruct
@@ -152,7 +152,20 @@ public class UsuarioPessoaManagedBean implements Serializable {
 		emailUser = daoEmail.updateMerge(emailUser);
 		usuarioPessoa.getEmails().add(emailUser);
 		emailUser = new EmailUser();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Informação: ", "Email cadastrado com sucesso."));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email cadastrado com sucesso."));
+	}
+
+	public void removerEmail() throws Exception {
+		String codigoemail = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+				.get("codigoemail");
+
+		EmailUser remover = new EmailUser();
+		remover.setId(Long.parseLong(codigoemail));
+		daoEmail.deletarPorId(remover);
+		usuarioPessoa.getEmails().remove(remover);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email deletado com sucesso."));
+
 	}
 }
