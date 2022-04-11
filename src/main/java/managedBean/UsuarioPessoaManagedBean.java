@@ -46,6 +46,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		barChartModel = new BarChartModel();
 		list = daoGeneric.listar(UsuarioPessoa.class);
 
 		ChartSeries userSalario = new ChartSeries();
@@ -103,6 +104,8 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 		daoGeneric.salvar(usuarioPessoa);
 		list.add(usuarioPessoa);
+		usuarioPessoa = new UsuarioPessoa();
+		init();
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Salvo com sucesso"));
 
@@ -123,9 +126,10 @@ public class UsuarioPessoaManagedBean implements Serializable {
 		try {
 			daoGeneric.removerUsario(usuarioPessoa);
 			list.remove(usuarioPessoa);
+			usuarioPessoa = new UsuarioPessoa();
+			init();
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Deletado com sucesso"));
-			usuarioPessoa = new UsuarioPessoa();
 
 		} catch (Exception e) {
 			if (e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
