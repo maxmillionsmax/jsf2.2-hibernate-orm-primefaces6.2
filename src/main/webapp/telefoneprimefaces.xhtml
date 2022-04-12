@@ -19,7 +19,7 @@
 	</h:form>
 
 	<h:form id="formulario">
-		<p:messages showDetail="true" showSummary="false" id="msg" />
+		<p:growl showDetail="true" showSummary="false" id="msg" />
 
 		<h:panelGrid columns="2">
 
@@ -27,10 +27,18 @@
 			<p:outputLabel value="#{telefoneManagedBean.user.nome}" />
 
 			<p:outputLabel>Número:</p:outputLabel>
-			<p:inputText value="#{telefoneManagedBean.telefone.numero}" required="true" requiredMessage="Digite um numero"/>
+			<p:inputMask value="#{telefoneManagedBean.telefone.numero}" 
+			mask="(99) 9 9999-9999" 
+			required="true" requiredMessage="Digite um numero"/>
 
 			<p:outputLabel>Tipo:</p:outputLabel>
-			<p:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Digite o tipo"/>
+			<p:selectOneMenu value="#{telefoneManagedBean.telefone.tipo}" style="width:190px"
+			  required="true" requiredMessage="Digite o tipo">
+				<f:selectItem itemValue="Recado" itemLabel="Recado"/>
+			    <f:selectItem itemValue="Trabalho" itemLabel="Trabalho"/>
+				<f:selectItem itemValue="Residencial" itemLabel="Residencial"/>
+				<f:selectItem itemValue="Comercial" itemLabel="Comercial"/>
+			</p:selectOneMenu>
 
 		</h:panelGrid>
 		<br />
