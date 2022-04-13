@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,13 +33,6 @@ public class UsuarioPessoa implements Serializable {
 	private String senha;
 	private int idade;
 	private String sexo;
-
-	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<TelefoneUser> telefoneUsers = new ArrayList<TelefoneUser>();
-
-	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<EmailUser> emails = new ArrayList<EmailUser>();
-	
 	private String cep;
 	private String logradouro;
 	private String complemento;
@@ -49,6 +43,23 @@ public class UsuarioPessoa implements Serializable {
 	private String gia;
 	private String bairro;
 	private Double salario;
+
+	@Column(columnDefinition = "text")
+	private String imagem;
+
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<TelefoneUser> telefoneUsers = new ArrayList<TelefoneUser>();
+
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<EmailUser> emails = new ArrayList<EmailUser>();
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
 
 	public void setEmails(List<EmailUser> emails) {
 		this.emails = emails;
