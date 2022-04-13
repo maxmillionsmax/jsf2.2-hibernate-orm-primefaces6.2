@@ -44,10 +44,17 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	private DaoEmail<EmailUser> daoEmail = new DaoEmail<EmailUser>();
 
+	private String campoPesquisa;
+
 	@PostConstruct
 	public void init() {
-		barChartModel = new BarChartModel();
 		list = daoGeneric.listar(UsuarioPessoa.class);
+
+		montarGrafico();
+	}
+
+	private void montarGrafico() {
+		barChartModel = new BarChartModel();
 
 		ChartSeries userSalario = new ChartSeries();
 		for (UsuarioPessoa usuarioPessoa : list) {
@@ -171,5 +178,18 @@ public class UsuarioPessoaManagedBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email deletado com sucesso."));
 
+	}
+	
+	public void pesquisar(){
+		list = daoGeneric.pesquisar(campoPesquisa);
+		montarGrafico();
+	}
+
+	public void setCampoPesquisa(String campoPesquisa) {
+		this.campoPesquisa = campoPesquisa;
+	}
+
+	public String getCampoPesquisa() {
+		return campoPesquisa;
 	}
 }
