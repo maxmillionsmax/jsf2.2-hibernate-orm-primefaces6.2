@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 
 import dao.DaoEmail;
 import dao.DaoUsuario;
+import datatablelazy.LazyDataTableModelUserPessoa;
 import model.EmailUser;
 import model.UsuarioPessoa;
 
@@ -40,7 +41,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 
-	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	private LazyDataTableModelUserPessoa<UsuarioPessoa> list = new LazyDataTableModelUserPessoa<UsuarioPessoa>();
 
 	private DaoUsuario<UsuarioPessoa> daoGeneric = new DaoUsuario<UsuarioPessoa>();
 
@@ -54,8 +55,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		list = daoGeneric.listar(UsuarioPessoa.class);
-
+		list.load(0, 5, null, null,null);
 		montarGrafico();
 	}
 
@@ -63,7 +63,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 		barChartModel = new BarChartModel();
 
 		ChartSeries userSalario = new ChartSeries();
-		for (UsuarioPessoa usuarioPessoa : list) {
+		for (UsuarioPessoa usuarioPessoa : list.list) {
 			userSalario.set(usuarioPessoa.getNome(), usuarioPessoa.getSalario());
 		}
 		barChartModel.addSeries(userSalario);
@@ -116,7 +116,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	public String salvar() {
 
 		daoGeneric.salvar(usuarioPessoa);
-		list.add(usuarioPessoa);
+		list.list.add(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
 		init();
 		FacesContext.getCurrentInstance().addMessage(null,
@@ -130,7 +130,8 @@ public class UsuarioPessoaManagedBean implements Serializable {
 		return "";
 	}
 
-	public List<UsuarioPessoa> getList() {
+	public LazyDataTableModelUserPessoa<UsuarioPessoa> getList() {
+		montarGrafico();
 		return list;
 	}
 
@@ -138,7 +139,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 
 		try {
 			daoGeneric.removerUsario(usuarioPessoa);
-			list.remove(usuarioPessoa);
+			list.list.remove(usuarioPessoa);
 			usuarioPessoa = new UsuarioPessoa();
 			init();
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -187,7 +188,7 @@ public class UsuarioPessoaManagedBean implements Serializable {
 	}
 	
 	public void pesquisar(){
-		list = daoGeneric.pesquisar(campoPesquisa);
+		list.pesquisar(campoPesquisa);
 		montarGrafico();
 	}
 
